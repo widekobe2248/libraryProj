@@ -5,6 +5,13 @@
 <style>
 * {box-sizing: border-box;}
 
+
+table{
+  width:14%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 body { 
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -62,13 +69,13 @@ body {
 <body>
 
   <div class="header">
-    <a href="home.html" class="logo">Carnegie Logo</a>
+    <a href="home.html" class="logo"><img src="carn.png" height="100"></a>
     <div class="header-right">
       <a class="home.html" href="home.html">Home</a>
       <a href="account.html">My Account</a>
       <a href="search.html">Search</a>
-    <a href="staff.html">Staff</a>
-    <a href="manager.html">Manager</a>
+      <div class="header-staff" style="display:none"><a href="staff.html">Staff</a></div>
+      <div class="header-manager" style="display:none"><a href="manager.html">Manager</a></div>
     </div>
   </div>
 
@@ -81,16 +88,16 @@ body {
 <div style="text-align:center;">
   <h2> Search for your favorite book! </h2>
   <form method = "post">
-    <table border="1" bgcolor="#00CCFF" class="center">
+    <table border="1" bgcolor="#03C04A" class="center">
       <tr><td>Title</td><td><input type ="text" name="title"/></td></tr>
       <tr><td>Author</td><td><input type ="text" name="author"/></td></tr>
       <tr><td>ISBN</td><td><input type ="text" name="isbn"/></td></tr>
-      <tr><td># of copies</td><td><input type ="text" name="copies"/></td></tr>
       <tr><td><input type="submit" name="submit" value = "Submit"/></td></tr>
     </table>
     </form> 
 
     <?php
+    
     $servername= "localhost";
     $username = "root";
     $password = "";
@@ -113,13 +120,34 @@ body {
     }
 
     if (mysqli_num_rows($result) > 0){
-      while($row = mysqli_fetch_assoc($result)) {
-        echo "Title: " . $row["title"]. " - Author: " . $row["model"] . " - ISBN: " . $row["isbn"] . " copies available:  ". $row["copies"] . "<br>";
+        echo "<table class="search">";
+        echo "<tr class="center">";
+        echo "<td>Id</td>";
+        echo "<td>Name</td>";
+        echo "<td>Title</td>";
+        echo "</tr>"; 
+      while($row = mysqli_fetch_assoc($result)) {                                              
+          echo "<tr>";
+          echo "<td>".$row[Title]."</td>";
+          echo "<td>".$row[Author]."</td>";
+          echo "<td>".$row[ISBN]."</td>";
+          echo "<td>".$row[copies]."</td>";
+          echo "</tr>";
       }
     }
     else {
       echo "0 results";
     }
+
+     user.role="manager";
+     if (user.role=="staff"){   
+      $("div.staff").show();
+     }
+     
+     if (user.role=="manager"){
+      $("div.header-staff").show();
+      $("div.header-manager").show();
+     }
   }
 ?>
 </div>

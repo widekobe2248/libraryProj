@@ -4,7 +4,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 * {box-sizing: border-box;}
-
+table{
+  width:14%;
+  margin-left: auto;
+  margin-right: auto;
+}
 body { 
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -57,12 +61,36 @@ body {
     float: none;
   }
 }
+
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+
+
+.button2:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
 </style>
 </head>
 <body>
 
 <div class="header">
-  <a href="home.html" class="logo">Carnegie Logo</a>
+  <a href="home.html" class="logo"><img src="carn.png" height="100"></a>
   <div class="header-right">
     <a class="home.html" href="home.html">Home</a>
     <a href="account.html">My Account</a>
@@ -80,79 +108,74 @@ body {
 
 
 <div style="text-align:center;">
-    <h2> Edit the book database </h2>
+  <button type="button" class="button button2" onclick="document.getElementById('editbookdb').style.display='block'">Edit the book Database</button>
     <form method = "post">
-      <table border="1" bgcolor="#00CCFF" class="center">
-        <tr><td>Title</td><td><input type ="text" name="title"/></td></tr>
-        <tr><td>Author</td><td><input type ="text" name="author"/></td></tr>
-        <tr><td>ISBN</td><td><input type ="text" name="isbn"/></td></tr>
-        <tr><td># of copies</td><td><input type ="text" name="copies"/></td></tr>
+      <table border="1" bgcolor="#03C04A" id="editbookdb" style="display:none" class="center">
+        <tr><td>Title</td><td><input type ="text" name="title1"/></td></tr>
+        <tr><td>Author</td><td><input type ="text" name="author1"/></td></tr>
+        <tr><td>ISBN</td><td><input type ="text" name="isbn1"/></td></tr>
         <tr><td><input type="submit" name="submit" value = "Submit"/></td></tr>
       </table>
       </form> 
 
-
-
 <div style="text-align:center;">
-    <h2> Edit the member database </h2>
+  <button type="button" class="button button2" onclick="document.getElementById('editmemberdb').style.display='block'">Edit the member Database</button>
     <form method = "post">
-        <table border="1" bgcolor="#00CCFF" class="center">
-        <tr><td>Title</td><td><input type ="text" name="title"/></td></tr>
-        <tr><td>Author</td><td><input type ="text" name="author"/></td></tr>
-        <tr><td>ISBN</td><td><input type ="text" name="isbn"/></td></tr>
-        <tr><td># of copies</td><td><input type ="text" name="copies"/></td></tr>
+        <table border="1" bgcolor="#03C04A" id="editmemberdb" style="display:none" class="center">
+        <tr><td>Name</td><td><input type ="text" name="name2"/></td></tr>
+        <tr><td>Card Number</td><td><input type ="text" name="cardnumber2"/></td></tr>
+        <tr><td>Address</td><td><input type ="text" name="address2"/></td></tr>
+        <tr><td>Phone Number</td><td><input type ="text" name="phonenumber2"/></td></tr>
         <tr><td><input type="submit" name="submit" value = "Submit"/></td></tr>
     </table>
     </form> 
 
 
 <div style="text-align:center;">
-    <h2> Edit the staff database </h2>
+  <button type="button" class="button button2" onclick="document.getElementById('editstaffdb').style.display='block'">Edit the staff Database</button>
     <form method = "post">
-        <table border="1" bgcolor="#00CCFF" class="center">
-        <tr><td>Title</td><td><input type ="text" name="title"/></td></tr>
-        <tr><td>Author</td><td><input type ="text" name="author"/></td></tr>
-        <tr><td>ISBN</td><td><input type ="text" name="isbn"/></td></tr>
-        <tr><td># of copies</td><td><input type ="text" name="copies"/></td></tr>
+        <table border="1" bgcolor="#03C04A" id="editstaffdb" style="display:none" class="center">
+        <tr><td>Name</td><td><input type ="text" name="name3"/></td></tr>
+        <tr><td>Position</td><td><input type ="text" name="position3"/></td></tr>
+        <tr><td>Address</td><td><input type ="text" name="address3"/></td></tr>
+        <tr><td>Phone Number</td><td><input type ="text" name="phonenumber3"/></td></tr>
         <tr><td><input type="submit" name="submit" value = "Submit"/></td></tr>
     </table>
     </form> 
-
-
-
+     
 <div style="text-align:center;">
-    <h2> Add a book </h2>
+  <button type="button" class="button button2" onclick="document.getElementById('addbook').style.display='block'">Add a Book</button>
     <form method = "post">
-        <table border="1" bgcolor="#00CCFF" class="center">
-        <tr><td>Title</td><td><input type ="text" name="title"/></td></tr>
-        <tr><td>Author</td><td><input type ="text" name="author"/></td></tr>
-        <tr><td>ISBN</td><td><input type ="text" name="isbn"/></td></tr>
-        <tr><td># of copies</td><td><input type ="text" name="copies"/></td></tr>
-        <tr><td><input type="submit" name="submit" value = "Submit"/></td></tr>
-    </table>
-    </form> 
-
-<div style="text-align:center;">
-    <h2> Add a new member </h2>
-    <form method = "post">
-        <table border="1" bgcolor="#00CCFF" class="center">
-        <tr><td>Title</td><td><input type ="text" name="title"/></td></tr>
-        <tr><td>Author</td><td><input type ="text" name="author"/></td></tr>
-        <tr><td>ISBN</td><td><input type ="text" name="isbn"/></td></tr>
-        <tr><td># of copies</td><td><input type ="text" name="copies"/></td></tr>
-        <tr><td><input type="submit" name="submit" value = "Submit"/></td></tr>
+        <table border="1" bgcolor="#03C04A" id="addbook" style="display:none" class="center">
+        <tr><td>Title</td><td><input type ="text" name="title4"/></td></tr>
+        <tr><td>Author</td><td><input type ="text" name="author4"/></td></tr>
+        <tr><td>ISBN</td><td><input type ="text" name="isbn4"/></td></tr>
+        <tr><td># of copies</td><td><input type ="text" name="copies4"/></td></tr>
+        <tr><td><input type="submit" name="submit" value = "Add Book"/></td></tr>
     </table>
     </form> 
 
 <div style="text-align:center;">
-    <h2> Add a new staff </h2>
+  <button class="button button2" type="button" onclick="document.getElementById('addmember').style.display='block'">Add a Member</button>
     <form method = "post">
-        <table border="1" bgcolor="#00CCFF" class="center">
-        <tr><td>Title</td><td><input type ="text" name="title"/></td></tr>
-        <tr><td>Author</td><td><input type ="text" name="author"/></td></tr>
-        <tr><td>ISBN</td><td><input type ="text" name="isbn"/></td></tr>
-        <tr><td># of copies</td><td><input type ="text" name="copies"/></td></tr>
-        <tr><td><input type="submit" name="submit" value = "Submit"/></td></tr>
+        <table border="1" bgcolor="#03C04A" id="addmember" style="display:none" class="center">
+        <tr><td>Name</td><td><input type ="text" name="name5"/></td></tr>
+        <tr><td>Card Number</td><td><input type ="text" name="cardnumber5"/></td></tr>
+        <tr><td>Address</td><td><input type ="text" name="address5"/></td></tr>
+        <tr><td>Phone Number</td><td><input type ="text" name="phonenumber5"/></td></tr>
+        <tr><td><input type="submit" name="submit" value = "Add Member"/></td></tr>
+    </table>
+    </form> 
+
+<div style="text-align:center;">
+  <button type="button" class="button button2" onclick="document.getElementById('addstaff').style.display='block'">Add a Staff</button>
+    <form method = "post">
+        <table border="1" bgcolor="#03C04A" id="addstaff" style="display:none" class="center">
+        <tr><td>Name</td><td><input type ="text" name="name5"/></td></tr>
+        <tr><td>Position</td><td><input type ="text" name="position5"/></td></tr>
+        <tr><td>Address</td><td><input type ="text" name="address5"/></td></tr>
+        <tr><td>Phone Number</td><td><input type ="text" name="phonenumber5"/></td></tr>
+        <tr><td><input type="submit" name="submit" value = "Add Staff"/></td></tr>
     </table>
     </form> 
 

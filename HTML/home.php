@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+	function Home(){ window.location = "home.php"}
+	function Account(){ window.location = "account.php"}
+	function Search(){ window.location = "search.php"}
+	function Staff(){ window.location = "Staff.php"}
+	function Manager(){ window.location = "Manager.php"}
+	function login(){ window.location = "login.php"}
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 * {box-sizing: border-box;}
@@ -62,42 +70,21 @@ body {
 <body>
 
 <div class="header">
-  <a href="home.html" class="logo"><img src="carn.png" height="100"></a>
+  <a href="home.php" class="logo">Carnegie Logo</a>
   <div class="header-right">
-    <a class="home.html" href="home.html">Home</a>
-    <a href="account.html">My Account</a>
-    <a href="search.html">Search</a>
-	<a href="staff.html">Staff</a>
-	<a href="manager.html">Manager</a>
+    <a class="home.php" href="#home">Home</a>
+    <a href="account.php">My Account</a>
+    <a href="search.php">Search</a>
+	<a href="staff.php">Staff</a>
+	<a href="manager.php">Manager</a>
   </div>
 </div>
 
-
-
-<div style="text-align:center;">
-<form action="login.php" method="post">
-
-  <h2>LOGIN</h2>
-
-  <?php if (isset($_GET['error'])) { ?>
-
-      <p class="error"><?php echo $_GET['error']; ?></p>
-
-  <?php } ?>
-
-  <label>User Name</label>
-
-  <input type="text" name="uname" placeholder="User Name"><br>
-
-  <label>Password</label>
-
-  <input type="password" name="password" placeholder="Password"><br> 
-
-  <button type="submit">Login</button>
-
-</form>
+<div style="padding-left:20px">
+  <h1>Home</h1>
+  <p>Welcome to the Carnegie public library</p>
+  <p>blah blah</p>
 </div>
-</body>
 
 </body>
 </html>
