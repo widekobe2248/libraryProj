@@ -81,7 +81,7 @@ body {
       if(isset($_SESSION['username'])) {
         echo'<a class="home.php" href="#home">Home</a>
         <a href="account.php">My Account</a>
-        <a href="search.html">Search</a> ';
+        <a href="search.php">Search</a> ';
       }
       else {
         echo'<a href ="login.php">Log In</a>';
@@ -90,12 +90,12 @@ body {
     <?php
       if(isset($_SESSION['staff']))
       {
-        echo '<a href="staff.html">Staff</a>';
+        echo '<a href="staff.php">Staff</a>';
       }
       if(isset($_SESSION['manager']))
       {
         if($_SESSION['manager'] == 1) {
-          echo '<a href="manager.html">Manager</a>';
+          echo '<a href="manager.php">Manager</a>';
         }
       }
     ?>
