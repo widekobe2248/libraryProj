@@ -1,3 +1,8 @@
+<?php
+  session_start();
+  include("conn.php");
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,11 +76,29 @@ body {
   <div class="header">
     <a href="home.html" class="logo"><img src="carn.png" height="100"></a>
     <div class="header-right">
-      <a class="home.html" href="home.html">Home</a>
-      <a href="account.html">My Account</a>
-      <a href="search.html">Search</a>
-      <div class="header-staff" style="display:none"><a href="staff.html">Staff</a></div>
-      <div class="header-manager" style="display:none"><a href="manager.html">Manager</a></div>
+      <?php
+      if(isset($_SESSION['username'])) {
+        echo'<a class="home.php" href="#home">Home</a>
+        <a href="account.php">My Account</a>
+        <a href="search.html">Search</a> ';
+      }
+      else {
+        echo'<a href ="login.php">Log In</a>';
+      }
+    ?>
+    <?php
+      if(isset($_SESSION['staff']))
+      {
+        echo '<a href="staff.html">Staff</a>';
+      }
+      if(isset($_SESSION['manager']))
+      {
+        if($_SESSION['manager'] == 1) {
+          echo '<a href="manager.html">Manager</a>';
+        }
+      }
+    ?>
+    <a href="logout.php">Log Out</a>
     </div>
   </div>
 

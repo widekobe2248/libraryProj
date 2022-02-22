@@ -92,11 +92,29 @@ body {
 <div class="header">
   <a href="home.html" class="logo"><img src="carn.png" height="100"></a>
   <div class="header-right">
-    <a class="home.html" href="home.html">Home</a>
-    <a href="account.html">My Account</a>
-    <a href="search.html">Search</a>
-	<a href="staff.html">Staff</a>
-	<a href="manager.html">Manager</a>
+    <?php
+    if(isset($_SESSION['username'])) {
+      echo'<a class="home.php" href="#home">Home</a>
+      <a href="account.php">My Account</a>
+      <a href="search.html">Search</a> ';
+    }
+    else {
+      echo'<a href ="login.php">Log In</a>';
+    }
+  ?>
+  <?php
+    if(isset($_SESSION['staff']))
+    {
+      echo '<a href="staff.html">Staff</a>';
+    }
+    if(isset($_SESSION['manager']))
+    {
+      if($_SESSION['manager'] == 1) {
+        echo '<a href="manager.html">Manager</a>';
+      }
+    }
+  ?>
+  <a href="logout.php">Log Out</a>
   </div>
 </div>
 
@@ -145,36 +163,40 @@ body {
      
 <div style="text-align:center;">
   <button type="button" class="button button2" onclick="document.getElementById('addbook').style.display='block'">Add a Book</button>
-    <form method = "post">
+    <form method = "post" action="addBook.php">
         <table border="1" bgcolor="#03C04A" id="addbook" style="display:none" class="center">
         <tr><td>Title</td><td><input type ="text" name="title4"/></td></tr>
         <tr><td>Author</td><td><input type ="text" name="author4"/></td></tr>
         <tr><td>ISBN</td><td><input type ="text" name="isbn4"/></td></tr>
         <tr><td># of copies</td><td><input type ="text" name="copies4"/></td></tr>
+        <tr><td>Loan Length</td><td><select name="loanlen"> <option value="1">1 Week</option> 
+          <option value="4">4 Weeks</option> </select> </td></tr>
         <tr><td><input type="submit" name="submit" value = "Add Book"/></td></tr>
     </table>
     </form> 
 
 <div style="text-align:center;">
   <button class="button button2" type="button" onclick="document.getElementById('addmember').style.display='block'">Add a Member</button>
-    <form method = "post">
+    <form method = "post" action="addMember.php">
         <table border="1" bgcolor="#03C04A" id="addmember" style="display:none" class="center">
         <tr><td>Name</td><td><input type ="text" name="name5"/></td></tr>
         <tr><td>Card Number</td><td><input type ="text" name="cardnumber5"/></td></tr>
         <tr><td>Address</td><td><input type ="text" name="address5"/></td></tr>
         <tr><td>Phone Number</td><td><input type ="text" name="phonenumber5"/></td></tr>
+        <tr><td>Username</td><td><input type ="text" name="uname"/></td></tr>
+        <tr><td>Password</td><td><input type ="text" name="password"/></td></tr>
         <tr><td><input type="submit" name="submit" value = "Add Member"/></td></tr>
     </table>
     </form> 
 
 <div style="text-align:center;">
   <button type="button" class="button button2" onclick="document.getElementById('addstaff').style.display='block'">Add a Staff</button>
-    <form method = "post">
+    <form method = "post" action="addStaff.php">
         <table border="1" bgcolor="#03C04A" id="addstaff" style="display:none" class="center">
-        <tr><td>Name</td><td><input type ="text" name="name5"/></td></tr>
-        <tr><td>Position</td><td><input type ="text" name="position5"/></td></tr>
-        <tr><td>Address</td><td><input type ="text" name="address5"/></td></tr>
-        <tr><td>Phone Number</td><td><input type ="text" name="phonenumber5"/></td></tr>
+        <tr><td>Member ID</td><td><input type ="text" name="membercardnum"/></td></tr>   
+        <tr><td>Manager</td><td>
+          <input type = "hidden" name = "manager" value = "0" />
+          <input type ="checkbox" value="1" name="manager"/></td></tr>
         <tr><td><input type="submit" name="submit" value = "Add Staff"/></td></tr>
     </table>
     </form> 

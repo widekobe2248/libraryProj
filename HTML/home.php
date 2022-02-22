@@ -1,3 +1,8 @@
+<?php
+  session_start();
+  include("conn.php");
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,21 +75,50 @@ body {
 <body>
 
 <div class="header">
-  <a href="home.php" class="logo">Carnegie Logo</a>
+  <a href="home.php" class="logo"><img src="carn.png"></a>
   <div class="header-right">
-    <a class="home.php" href="#home">Home</a>
-    <a href="account.php">My Account</a>
-    <a href="search.php">Search</a>
-	<a href="staff.php">Staff</a>
-	<a href="manager.php">Manager</a>
+    <?php
+      if(isset($_SESSION['username'])) {
+        echo'<a class="home.php" href="#home">Home</a>
+        <a href="account.php">My Account</a>
+        <a href="search.html">Search</a> ';
+      }
+      else {
+        echo'<a href ="login.php">Log In</a>';
+      }
+    ?>
+    <?php
+      if(isset($_SESSION['staff']))
+      {
+        echo '<a href="staff.html">Staff</a>';
+      }
+      if(isset($_SESSION['manager']))
+      {
+        if($_SESSION['manager'] == 1) {
+          echo '<a href="manager.html">Manager</a>';
+        }
+      }
+    ?>
+    <a href="logout.php">Log Out</a>
   </div>
 </div>
 
 <div style="padding-left:20px">
   <h1>Home</h1>
-  <p>Welcome to the Carnegie public library</p>
-  <p>blah blah</p>
+  <p>Welcome to the Carnegie public library
+  <?php 
+  if (!empty($_SESSION['username']))
+  {
+    $name = $_SESSION['name'];
+    echo $name . '</p>';
+  }
+  else {
+    echo 'NEED TO LOGIN </p>';
+  } 
+  ?>
+
 </div>
 
 </body>
 </html>
+
