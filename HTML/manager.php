@@ -17,7 +17,7 @@
 <style>
 * {box-sizing: border-box;}
 table{
-  width:14%;
+  width:fit-content;
   margin-left: auto;
   margin-right: auto;
 }
@@ -119,81 +119,127 @@ body {
   <p>blah blah</p>
 </div>
 
+<?php
+    $sqlBook = "SELECT * FROM books";
+    $bookResult = mysqli_query($conn, $sqlBook);
+
+ ?>
+
 
 <div style="text-align:center;">
   <button type="button" class="button button2" onclick="document.getElementById('editbookdb').style.display='block'">Edit the book Database</button>
-    <form method = "post">
       <table border="1" bgcolor="#03C04A" id="editbookdb" style="display:none" class="center">
-        <tr><td>Title</td><td><input type ="text" name="title1"/></td></tr>
-        <tr><td>Author</td><td><input type ="text" name="author1"/></td></tr>
-        <tr><td>ISBN</td><td><input type ="text" name="isbn1"/></td></tr>
-        <tr><td><input type="submit" name="submit" value = "Submit"/></td></tr>
+      <tr>
+            <th> Book Title </th>
+            <th> Book Author </th>
+            <th> Book ISBN </th>
+            <th> Copies </th>
+            <th> Loan Length</th>
+            <th> Update </th>
+            <th> Delete </th>
+        </tr>
+        <?php
+          while($row = mysqli_fetch_assoc($bookResult))
+          {
+
+            echo"<tr>\n <form action='updateBook.php' method='post'>";
+            echo"<td> <input type='text' style='text-align:center;' size='10' id='title' name='title' value ='" . $row["title"] . "'> </td>\n";
+            echo"<td> <input type='text' style='text-align:center;' size='10' id='author' name='author' value ='" . $row["author"] . "'> </td>\n";
+            echo"<td> <input type='text' style='text-align:center;' size='10' id='isbn' name='isbn' value ='" . $row["isbn"] . "'> </td>\n";
+            echo"<td> <input type='text' style='text-align:center;' size='10' id='num_copies' name='num_copies' value ='" . $row["num_copies"] . "'> </td>\n";
+            echo"<td> <input type='text' style='text-align:center;' size='10' id='loan_len' name='loan_len' value ='" . $row["loan_len"] . "'> </td>\n";
+            echo"<td> <input type='hidden' id='isbn' name='isbn' value='" .$row["isbn"]. "'>
+            <input type='submit' value=Update> </form> </td>\n";
+            echo"<td> <form action='deleteBook.php' method='post'> <input type='hidden' id='isbn' name='isbn' value='" .$row["isbn"]. "'>
+            <input type='submit' value=Delete> </form> </td>\n";
+          }
+        ?>
+
       </table>
-      </form> 
 </div>
+
 <?php
-    
+    $sqlMember = "SELECT * FROM members";
+    $memberResult = mysqli_query($conn, $sqlMember);
 
-    @$a=$_POST['title1'];
-    @$b=$_POST['author1'];
-    @$c=$_POST['isbn1'];
-    @$d=$_POST['num_copies1'];
-    if(@$_POST['submit'])
-    {
-      $query = "SELECT * FROM books where title='$a' OR author='$b' OR isbn = '$c' OR num_copies = '$d'";
-
-      $result = mysqli_query($conn,$query);
-    
-
-    if (mysqli_num_rows($result) > 0){
-        echo "<br>";
-        echo "<table class=search>";
-        echo "<tr class=center>";
-        echo "<td>Id</td>";
-        echo "<td>Name</td>";
-        echo "<td>Title</td>";
-        echo "<td>Copies</td>";
-        echo "</tr>"; 
-      while($row = mysqli_fetch_assoc($result)) {                                              
-          echo "<tr>";
-          echo "<td>".$row['title']."</td>";
-          echo "<td>".$row['author']."</td>";
-          echo "<td>".$row['isbn']."</td>";
-          echo "<td>".$row['num_copies']."</td>";
-          echo "</tr>";
-      }
-    }
-    else {
-      echo "0 results";
-    }
-}
  ?>
-
 <div style="text-align:center;">
   <button type="button" class="button button2" onclick="document.getElementById('editmemberdb').style.display='block'">Edit the member Database</button>
-    <form method = "post">
-        <table border="1" bgcolor="#03C04A" id="editmemberdb" style="display:none" class="center">
-        <tr><td>Name</td><td><input type ="text" name="name2"/></td></tr>
-        <tr><td>Card Number</td><td><input type ="text" name="cardnumber2"/></td></tr>
-        <tr><td>Address</td><td><input type ="text" name="address2"/></td></tr>
-        <tr><td>Phone Number</td><td><input type ="text" name="phonenumber2"/></td></tr>
-        <tr><td><input type="submit" name="submit" value = "Submit"/></td></tr>
+        <table border="1" bgcolor="#03C04A" id="editmemberdb" style="display:none" class="center"> 
+        <tr>
+            <th> Name </th>
+            <th> Card Number </th>
+            <th> Telephone </th>
+            <th> Address </th>
+            <th> Update </th>
+            <th> Delete </th>
+        </tr>
+        <?php
+          while($row = mysqli_fetch_assoc($memberResult))
+          {
+
+            echo"<tr>\n <form action='updateMember.php' method='post'>";
+            echo"<td> <input type='text' style='text-align:center;' size='10' id='name' name='name' value ='" . $row["name"] . "'> </td>\n";
+            echo"<td> <input type='text' style='text-align:center;' size='10' id='card_num' name='card_num' value ='" . $row["card_num"] . "'> </td>\n";
+            echo"<td> <input type='text' style='text-align:center;' size='10' id='telephone' name='telephone' value ='" . $row["telephone"] . "'> </td>\n";
+            echo"<td> <input type='text' style='text-align:center;' size='10' id='address' name='address' value ='" . $row["address"] . "'> </td>\n";
+            echo"<td> <input type='hidden' id='card_num' name='card_num' value='" .$row["card_num"]. "'>
+            <input type='submit' value=Update> </form> </td>\n";
+            echo"<td> <form action='deleteMember.php' method='post'> <input type='hidden' id='card_num' name='card_num' value='" .$row["card_num"]. "'>
+            <input type='submit' value=Delete> </form> </td>\n";
+          }
+        ?>
     </table>
-    </form> 
     </div>
 
+  <?php
+    $sqlStaff = "SELECT * FROM members,staff WHERE members.card_num=staff.card_num ";
+    $sqlStaff = "SELECT * FROM members INNER JOIN staff ON members.card_num=staff.card_num ";
+    $staffResult = mysqli_query($conn, $sqlStaff);
+
+
+ ?>    
 <div style="text-align:center;">
   <button type="button" class="button button2" onclick="document.getElementById('editstaffdb').style.display='block'">Edit the staff Database</button>
-    <form method = "post">
         <table border="1" bgcolor="#03C04A" id="editstaffdb" style="display:none" class="center">
-        <tr><td>Name</td><td><input type ="text" name="name3"/></td></tr>
-        <tr><td>Position</td><td><input type ="text" name="position3"/></td></tr>
-        <tr><td>Address</td><td><input type ="text" name="address3"/></td></tr>
-        <tr><td>Phone Number</td><td><input type ="text" name="phonenumber3"/></td></tr>
-        <tr><td><input type="submit" name="submit" value = "Submit"/></td></tr>
+        <tr>
+            <th> Name </th>
+            <th> Card Number </th>
+            <th> Manager </th>
+            <th> Update </th>
+            <th> Delete </th>
+        </tr>
+        <?php
+          while($row = mysqli_fetch_assoc($staffResult))
+          {
+            $yes = "";
+            $no = "";
+            if($row['manager'] == 1)
+            {
+              $yes = "selected";
+            }
+            else 
+            {
+              $no = "selected";
+            }
+
+            echo"<tr>\n <form action='updateStaff.php' method='post'>";
+            echo"<td>" . $row['name'] ." </td>\n";
+            echo"<td> " . $row["card_num"] . " </td>\n";
+            echo"<td> <select style='text-align:center;' id='manager' name='manager'> 
+            <option value = 'yes' " .$yes."> Yes </option> 
+            <option value = 'no' " .$no."> No </option> </select> </td>\n";
+            echo"<td> <input type='hidden' id='staff_id' name='staff_id' value='" .$row["staff_id"]. "'>
+            <input type='submit' value=Update> </form> </td>\n";
+            echo"<td> <form action='deleteStaff.php' method='post'> <input type='hidden' id='staff_id' name='staff_id' value='" .$row["staff_id"]. "'>
+            <input type='submit' value=Delete> </form> </td>\n";
+          }
+        ?>
     </table>
-    </form> 
-    </div>     
+    </div> 
+    
+    
+
 <div style="text-align:center;">
   <button type="button" class="button button2" onclick="document.getElementById('addbook').style.display='block'">Add a Book</button>
     <form method = "post" action="addBook.php">
