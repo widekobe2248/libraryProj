@@ -102,7 +102,7 @@
 
     <p> Congratulations on getting the success page. You did the thing good.
     </body>
-    <a href="index.html"><button>Main Menu</button></a>
+    <a href="home.php"><button>Main Menu</button></a>
     <img src="thumbsup.jpg" alt="Thumbs Up"
          width="200" 
      height="125">
