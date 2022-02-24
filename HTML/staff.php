@@ -123,7 +123,7 @@ body {
   </div>
   
   <div style="padding-left:20px">
-    <h1>Manager</h1>
+    <h1>Staff</h1>
     <p>Welcome to the Carnegie public library</p>
     <p>blah blah</p>
   </div>
@@ -131,33 +131,58 @@ body {
   
   <div style="text-align:center;">
     <button type="button" class="button button2" onclick="document.getElementById('checkoutbook').style.display='block'">Check out a book</button>
-      <form method = "post">
+      <form method = "post" action="addRes.php">
         <table border="1" bgcolor="#03C04A" id="checkoutbook" style="display:none" class="center">
           <tr><th colspan="2">Member information</th></tr>
-          <tr><td>Name</td><td><input type ="text" name="title1"/></td></tr>
-          <tr><td>Card Number</td><td><input type ="text" name="author1"/></td></tr>
-          <tr><td>Address</td><td><input type ="text" name="isbn1"/></td></tr>
-          <tr><td>Phone Number</td><td><input type ="text" name="copies1"/></td></tr>
+          <tr><td>Card Number</td><td><input type ="text" name="card_num"/></td></tr>
           <tr><th colspan="2">Book Information</th></tr>
-          <tr><td>Title</td><td><input type ="text" name="title1"/></td></tr>
-          <tr><td>Author</td><td><input type ="text" name="author1"/></td></tr>
-          <tr><td>ISBN</td><td><input type ="text" name="isbn1"/></td></tr>
+          <tr><td>ISBN</td><td><input type="text" name="isbn"/></td></tr>
+          <tr><td>Date Due</td><td><input type="date" id="date" name="date"
+       value="2022-02-24"
+       min="2022-01-01" max="2023-12-31"></td></tr>
           <tr><td><input type="submit" name="submit" value = "Submit"/></td></tr>
         </table>
         </form> 
   
   <div style="text-align:center;">
     <button type="button" class="button button2" onclick="document.getElementById('returnbook').style.display='block'">Return a member's book</button>
-      <form method = "post">
+      <form method = "post" action="removeRes.php">
         <table border="1" bgcolor="#03C04A" id="returnbook" style="display:none" class="center">
-          <tr><td>Name</td><td><input type ="text" name="title1"/></td></tr>
-          <tr><td>Card Number</td><td><input type ="text" name="author1"/></td></tr>
-          <tr><td>Address</td><td><input type ="text" name="isbn1"/></td></tr>
-          <tr><td>Phone Number</td><td><input type ="text" name="copies1"/></td></tr>
+        <tr><th colspan="2">Member information</th></tr>
+          <tr><td>Card Number</td><td><input type ="text" name="card_num"/></td></tr>
+          <tr><th colspan="2">Book Information</th></tr>
+          <tr><td>ISBN</td><td><input type ="text" name="isbn"/></td></tr>
           <tr><td><input type="submit" name="submit" value = "Submit"/></td></tr>
         </table>
         </form> 
 
+        <?php
+    $sqlStaff = "SELECT * FROM reservations";
+    $staffResult = mysqli_query($conn, $sqlStaff);
+ ?>  
+    <div style="text-align:center;">
+    <button type="button" class="button button2" onclick="document.getElementById('listRes').style.display='block'">View Current Reservations</button>
+      <form method = "post" action="removeRes.php">
+        <table border="1" bgcolor="#03C04A" id="listRes" style="display:none" class="center">
+        <tr>
+            <th> Res Id </th>
+            <th> ISBN </th>
+            <th> Card Number </th>
+            <th> Expired Date </th>
+        </tr>
+        <?php
+          while($row = mysqli_fetch_assoc($staffResult))
+          {
+
+            echo"<tr>\n ";
+            echo"<td>" . $row['res_id'] . "</td>\n";
+            echo"<td>". $row['isbn'] ."</td>\n";
+            echo"<td>" . $row['card_num'] ." </td>\n";
+            echo"<td>" . $row['expired_date'] ."</td>\n";
+          }
+        ?>
+        </table>
+        </form> 
   
   
   </body>
