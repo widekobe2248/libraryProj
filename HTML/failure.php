@@ -100,7 +100,7 @@ body {
 
 <p> Welcome to the failure page.  If you made it here, you clearly did something wrong.<br> 
 I would prefer if you didn't do that.  Thank you.</body>
-<a href="index.html"><button>Main Menu</button></a>
+<a href="home.php"><button>Main Menu</button></a>
 <img src="thumbsdown.jpg" alt="Thumbs Down"
           width="200" 
      height="125"/>
