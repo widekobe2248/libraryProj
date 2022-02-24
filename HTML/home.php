@@ -56,7 +56,7 @@ body {
   float: right;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 300px) {
   .header a {
     float: none;
     display: block;
@@ -78,7 +78,7 @@ body {
     session_start();
     include("conn.php");
       if(isset($_SESSION['username'])) {
-        echo'<a class="home.php" href="#home">Home</a>
+        echo'<a class="home.php" href="home.php">Home</a>
         <a href="account.php">My Account</a>
         <a href="search.php">Search</a> ';
       }
@@ -102,8 +102,8 @@ body {
   </div>
 </div>
 
-<div style="padding-left:20px">
-  <h1>Home</h1>
+<div style="text-align:center;">
+  <a href="home.php" class="logo"><img src="library.png"></a>
   <p>Welcome to the Carnegie public library
   <?php 
   if (!empty($_SESSION['username']))
@@ -118,6 +118,36 @@ body {
 
 </div>
 
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=2691675043";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<table style="border-collapse: collapse; width: 100%; text-align: center;">
+<tbody>
+<tr>
+<td style="width: 100%; text-align: center;">
+<div class="fb-page" style="text-align: center;" width="800" height="800" data-href="https://www.facebook.com/cplscangola" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+<div class="fb-xfbml-parse-ignore">
+<blockquote cite="https://www.facebook.com/cplscangola"><a href="https://www.facebook.com/cplscangola">Carnegie Library</a></blockquote>
+</tr>
+</tbody>
+</table>
+
+<table style="border-collapse: collapse; width: 100%; text-align: center;">
+<tbody>
+<tr>
+<td style="width: 100%; text-align: center;">
+<iframe width="600" height="450" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJAalYYz8mFogRulseMI4ZDDA&key=AIzaSyBd2wltiCoBHtMSov4hRl-m6btrt6K_aQk"></iframe>
+</tr>
+</tbody>
+</table>
+
 </body>
 </html>
-

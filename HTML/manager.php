@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+  session_start();
+  include("conn.php");
+?>
 <html>
 <head>
 <script type="text/javascript">
@@ -126,6 +130,44 @@ body {
         <tr><td><input type="submit" name="submit" value = "Submit"/></td></tr>
       </table>
       </form> 
+</div>
+<?php
+    
+
+    @$a=$_POST['title1'];
+    @$b=$_POST['author1'];
+    @$c=$_POST['isbn1'];
+    @$d=$_POST['num_copies1'];
+    if(@$_POST['submit'])
+    {
+      $query = "SELECT * FROM books where title='$a' OR author='$b' OR isbn = '$c' OR num_copies = '$d'";
+
+      $result = mysqli_query($conn,$query);
+    
+
+    if (mysqli_num_rows($result) > 0){
+        echo "<br>";
+        echo "<table class=search>";
+        echo "<tr class=center>";
+        echo "<td>Id</td>";
+        echo "<td>Name</td>";
+        echo "<td>Title</td>";
+        echo "<td>Copies</td>";
+        echo "</tr>"; 
+      while($row = mysqli_fetch_assoc($result)) {                                              
+          echo "<tr>";
+          echo "<td>".$row['title']."</td>";
+          echo "<td>".$row['author']."</td>";
+          echo "<td>".$row['isbn']."</td>";
+          echo "<td>".$row['num_copies']."</td>";
+          echo "</tr>";
+      }
+    }
+    else {
+      echo "0 results";
+    }
+}
+ ?>
 
 <div style="text-align:center;">
   <button type="button" class="button button2" onclick="document.getElementById('editmemberdb').style.display='block'">Edit the member Database</button>
@@ -138,7 +180,7 @@ body {
         <tr><td><input type="submit" name="submit" value = "Submit"/></td></tr>
     </table>
     </form> 
-
+    </div>
 
 <div style="text-align:center;">
   <button type="button" class="button button2" onclick="document.getElementById('editstaffdb').style.display='block'">Edit the staff Database</button>
@@ -151,7 +193,7 @@ body {
         <tr><td><input type="submit" name="submit" value = "Submit"/></td></tr>
     </table>
     </form> 
-     
+    </div>     
 <div style="text-align:center;">
   <button type="button" class="button button2" onclick="document.getElementById('addbook').style.display='block'">Add a Book</button>
     <form method = "post" action="addBook.php">
@@ -165,7 +207,7 @@ body {
         <tr><td><input type="submit" name="submit" value = "Add Book"/></td></tr>
     </table>
     </form> 
-
+    </div>
 <div style="text-align:center;">
   <button class="button button2" type="button" onclick="document.getElementById('addmember').style.display='block'">Add a Member</button>
     <form method = "post" action="addMember.php">
@@ -179,7 +221,7 @@ body {
         <tr><td><input type="submit" name="submit" value = "Add Member"/></td></tr>
     </table>
     </form> 
-
+    </div>
 <div style="text-align:center;">
   <button type="button" class="button button2" onclick="document.getElementById('addstaff').style.display='block'">Add a Staff</button>
     <form method = "post" action="addStaff.php">
@@ -191,7 +233,6 @@ body {
         <tr><td><input type="submit" name="submit" value = "Add Staff"/></td></tr>
     </table>
     </form> 
-
-
+    </div>
 </body>
 </html>

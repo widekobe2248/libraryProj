@@ -79,7 +79,7 @@ body {
   <div class="header-right">
   <?php
       if(isset($_SESSION['username'])) {
-        echo'<a class="home.php" href="#home">Home</a>
+        echo'<a class="home.php" href="home.php">Home</a>
         <a href="account.php">My Account</a>
         <a href="search.php">Search</a> ';
       }

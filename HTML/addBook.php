@@ -9,7 +9,7 @@
     $copies = $_POST['copies4'];
     $loanlen = $_POST['loanlen'];
 
-    $addbookSQL = "INSERT INTO books(isbn, title, author, num_copies, loan_len) VALUES(' ".$isbn ." ', '".$title . "', '".$isbn . "', 
+    $addbookSQL = "INSERT INTO books(isbn, title, author, num_copies, loan_len) VALUES(' ".$isbn ." ', '".$title . "', '".$author . "', 
     '".$copies. "', '".$loanlen . "' );";
 
     $result = mysqli_query($conn, $addbookSQL);

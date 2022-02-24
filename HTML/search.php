@@ -78,7 +78,7 @@ body {
     <div class="header-right">
       <?php
       if(isset($_SESSION['username'])) {
-        echo'<a class="home.php" href="#home">Home</a>
+        echo'<a class="home.php" href="home.php">Home</a>
         <a href="account.php">My Account</a>
         <a href="search.php">Search</a> ';
       }
@@ -125,20 +125,22 @@ body {
     @$a=$_POST['title'];
     @$b=$_POST['author'];
     @$c=$_POST['isbn'];
-    @$d=$_POST['copies'];
+    @$d=$_POST['num_copies'];
     if(@$_POST['submit'])
     {
-      $query = "SELECT * FROM books where title='$a' OR author='$b' OR isbn = '$c' OR copies = '$d'";
+      $query = "SELECT * FROM books where title='$a' OR author='$b' OR isbn = '$c' OR num_copies = '$d'";
 
       $result = mysqli_query($conn,$query);
-    }
+    
 
     if (mysqli_num_rows($result) > 0){
+        echo "<br>";
         echo "<table class=search>";
         echo "<tr class=center>";
         echo "<td>Id</td>";
         echo "<td>Name</td>";
         echo "<td>Title</td>";
+        echo "<td>Copies</td>";
         echo "</tr>"; 
       while($row = mysqli_fetch_assoc($result)) {                                              
           echo "<tr>";
@@ -152,6 +154,7 @@ body {
     else {
       echo "0 results";
     }
+  }
   
 ?>
 </div>
